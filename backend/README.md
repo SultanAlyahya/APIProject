@@ -72,9 +72,14 @@ This README is missing documentation of your endpoints. Below is an example for 
 
 Endpoints
 GET '/categories'
-GET ...
-POST ...
-DELETE ...
+GET '/questions'
+POST '/questions'
+DELETE '/questions/<int:id>'
+POST '/searchForQuestions'
+GET '/categories/<id>/questions'
+POST '/quizzes'
+
+
 
 GET '/categories'
 - Fetches a dictionary of categories in which the keys are the ids and the value is the corresponding string of the category
@@ -86,6 +91,98 @@ GET '/categories'
 '4' : "History",
 '5' : "Entertainment",
 '6' : "Sports"}
+
+GET '/questions'
+- Fetches a dictionary of categories, questions, totalQuestions and currentCategory in which the keys are the ids and the value is the corresponding string of the category
+- Request Arguments: page<page number>:int from URL query parameters
+- Returns: An array of questions, total questions, array of categories and current category 
+{
+    questions:[{
+        'id':4,
+        'question': 'what is',
+        'answer': 'it is',
+        'category': 'cars'
+        'difficulty':10
+    }......10]
+    totalQuestions:12,
+    'categories': {[
+        'id':4,
+        'type':'cars'
+    ].....},
+    'currentCategory:{
+        id:'3',
+        type:'cars
+    }
+}
+
+
+POST '/questions'
+- post new question with questions answer, category and difficulty
+- Request Arguments: question<String>, answer<String>, category<String>,           difficulty<number> as application/json
+- Returns: json ''done 
+{
+    done:'yes'
+}
+
+DELETE '/questions/<int:id>'
+- delete question with id
+- Request Arguments: id<int>
+- Returns: json question 
+{
+    'question':'deleted'
+}
+
+POST '/searchForQuestions'
+- post searchTerm for search for questions
+- Request Arguments: searchTerm<String>
+- Returns: json ''done 
+{
+    questions:[{
+        'id':4,
+        'question': 'what is',
+        'answer': 'it is',
+        'category': 'cars'
+        'difficulty':10
+    }......10]
+    totalQuestions:12,
+    'currentCategory:{
+        id:'3',
+        type:'cars
+    }
+}
+
+GET '/categories/<id>/questions'
+- get questions from particular category
+- Request Arguments: question<String>, answer<String>, category<String>,           difficulty<number> as application/json
+- Returns: json ''done 
+{
+    questions:[{
+        'id':4,
+        'question': 'what is',
+        'answer': 'it is',
+        'category': 'cars'
+        'difficulty':10
+    }......10]
+    totalQuestions:12,
+    'currentCategory:{
+        id:'3',
+        type:'cars
+    }
+}
+
+POST '/quizzes'
+- post new question with questions answer, category and difficulty
+- Request Arguments: question<String>, answer<String>, category<String>,           difficulty<number> as application/json
+- Returns: json ''done 
+{
+   questions:{
+        'id':4,
+        'question': 'what is',
+        'answer': 'it is',
+        'category': 'cars'
+        'difficulty':10
+    }
+}
 
 ```
 
